@@ -40,6 +40,7 @@ base        .null   ""      ; So offset zero is invalid
 help        .null   "help"
 ls          .null   "ls"
 dir         .null   "dir"
+runfl       .null   "!"
 read        .null   "read"
 write       .null   "write"  
 dump        .null   "dump" 
@@ -59,6 +60,7 @@ commands
             .word   words.help,     help
             .word   words.ls,       dir.cmd
             .word   words.dir,      dir.cmd
+            .word   words.runfl,    runfl.cmd
             .word   words.read,     read.cmd
             .word   words.write,    write.cmd
             .word   words.dump,     dump.cmd
@@ -96,6 +98,7 @@ _msg
             .text   "<digit>:            Change drive.", $0a
             .text   "ls                  Shows the directory.",$0a
             .text   "dir                 Shows the directory.",$0a
+            .text   "!      <name>       Executes a program from Flash.",$0a
             .text   "read   <fname>      Prints the contents of <fname>.", $0a
             .text   "write  <fname>      Writes user input to <fname>.", $0a
             .text   "dump   <fname>      Hex-dumps <fname>.", $0a
@@ -258,7 +261,7 @@ _next
             inx
             bra     _cmd
 _fail
-.if true
+.if false ;true
           ; See if it's the name of a binary
             stz     kernel.args.buf+0
             lda     #>readline.buf

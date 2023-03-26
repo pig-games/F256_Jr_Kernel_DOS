@@ -4,6 +4,7 @@ DOS	= \
 	dos/dos.asm \
 	dos/cmd.asm \
 	dos/cmd_dir.asm \
+	dos/cmd_runfl.asm \
 	dos/cmd_read.asm \
 	dos/cmd_write.asm \
 	dos/cmd_dump.asm \
@@ -22,9 +23,9 @@ DOS	= \
 
 COPT = -C -Wall -Werror -Wno-shadow -x --verbose-list -I .
 
-dos_jr.bin: $(DOS) kernel/keys.asm
+pgdos.bin: $(DOS) kernel/keys.asm
 	64tass $(COPT) $(DOS) -b -L $(basename $@).lst -o $@ -D DATE_STR=\"$(shell date +\"%d-%b-%y\")\"
-	dd if=$@ of=kernel/dos.bin ibs=8192 obs=8192 skip=0 count=1
+	dd if=$@ of=../f256setup/pgdos.bin ibs=8192 obs=8192 skip=0 count=1
 
 bundle: refresh dos_jr.bin
 

@@ -10,7 +10,7 @@
             .word       dos.start       ; Start here
             .word       0               ; version
             .word       0               ; kernel
-            .text       "DOS",0  ; Still acting as SuperBASIC's header
+            .text       "PGDOS",0  ; Still acting as SuperBASIC's header
             
 hello
             ldy     #0
@@ -135,7 +135,8 @@ _msg
             .text   "Fat32 from https://github.com/commanderx16/x16-rom", $0a
             .text   "Copyright 2020 Frank van den Hoef and Michael Steil", $0a
             .text   $0a
-            .text   "Simple DOS Shell, built ", DATE_STR, $0a
+            .text   "Pig Games DOS Shell, built ", DATE_STR, $0a
+            .text   "Based on Jessie Oberreuters Simple DOS Shell", $0a
             .text   $0a
             .byte   $0
             
